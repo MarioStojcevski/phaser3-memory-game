@@ -35,7 +35,7 @@ class Game extends Phaser.Scene {
 
         this.itemsGroup = this.add.group();
 
-        const timerLabel = this.add.text(10, 10, "00.00", {
+        const timerLabel = this.add.text(10, 20, "00.00", {
             fontSize: "32px",
             fontFamily: '"Press Start 2P"',
             fill: "#fff"

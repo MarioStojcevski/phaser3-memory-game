@@ -12,6 +12,7 @@ class Credits extends Phaser.Scene {
   }
 
   create() {
+    this.changeDir = false;
     this.createCharacters();
     
     this.createBackButton();
@@ -24,24 +25,36 @@ class Credits extends Phaser.Scene {
   createCharacters() {
     const { width, height } = this.scale;
 
-    const mario = this.add.image(width/2, height/2, "mario");
-    const lina = this.add.image(width/2, height/2, "lina");
+    this.mario = this.add.image(width/2, height/2, "mario");
+    this.lina = this.add.image(width/2, height/2, "lina");
 
-    mario.setOrigin(1, 1);
-    lina.setOrigin(0, 1);
+    this.mario.setOrigin(1, -0.2);
+    this.lina.setOrigin(0, -0.2);
     
-    mario.setScale(0.5);
-    lina.setScale(0.5);
+    this.mario.setScale(0.5);
+    this.lina.setScale(0.5);
+
+    this.add.text(width/2, height/2, 'Mario', {
+      fontSize: 24,
+      fontFamily: '"Press Start 2P"',
+      color: '#fff',
+    }).setOrigin(1.5, -1);
+
+    this.add.text(width/2, height/2, 'Lina', {
+      fontSize: 24,
+      fontFamily: '"Press Start 2P"',
+      color: '#fff',
+    }).setOrigin(-0.8, -1);
+  }
+
+  createBackButton () {
+    const { width, height } = this.scale;
 
     this.add.text(width/2, height/2, 'Credits', {
       fontSize: 24,
       fontFamily: '"Press Start 2P"',
       color: '#fff',
-    }).setOrigin(0.5, -1);
-  }
-
-  createBackButton () {
-    const { width, height } = this.scale;
+    }).setOrigin(0.5, 7);
 
     const backButton = this.add.text(width/2, height/2, 'Back', {
       fontSize: 14,
@@ -51,7 +64,7 @@ class Credits extends Phaser.Scene {
       padding: 10,
     });
 
-    backButton.setOrigin(0.5, -2).setInteractive();
+    backButton.setOrigin(0.5, 4).setInteractive();
 
     backButton.on('pointerover', () => {
       backButton.setStyle({ backgroundColor: '#A865C9' });
@@ -64,6 +77,20 @@ class Credits extends Phaser.Scene {
     backButton.on('pointerdown', () => {
       this.scene.start(SceneKeys.TITLE_SCREEN);
     });
+  }
+
+  update() {
+    let movingOneDirection = 5;
+    while (movingOneDirection) {
+      this.mario.y += 0.1;
+      this.lina.y += 0.1;
+      movingOneDirection -= 1;
+
+      if (this.mario.y >= 320) {
+        this.mario.y = 300;
+        this.lina.y = 300;
+      }
+    }
   }
 
 }
