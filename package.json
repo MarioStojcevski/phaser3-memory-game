@@ -1,0 +1,20 @@
+{
+  "name": "phaser3-memory-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-reporter-static-files-copy": "^1.5.0",
+    "phaser": "^3.55.2",
+    "webfontloader": "^1.6.28"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
